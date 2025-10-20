@@ -38,11 +38,15 @@ public class Application {
                 continue;
             }
             try {
-                result += Integer.parseInt(number);
+                int integer = Integer.parseInt(number);
+                if (integer <= 0) {
+                    throw new IllegalArgumentException();
+                }
+                result += integer;
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(e);
             }
         }
-        System.out.println("결과: " + result);
+        System.out.println("결과 : " + result);
     }
 }
