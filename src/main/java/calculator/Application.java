@@ -3,7 +3,6 @@ package calculator;
 import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -22,6 +21,9 @@ public class Application {
 
         while (matcher.find()) {
             String delimiter = matcher.group(2);
+            if (delimiter.equals(".")) {
+                throw new IllegalArgumentException(".은 허용되지 않는 구분자 입니다.");
+            }
             delimiters.add(delimiter);
             input  = input.substring(matcher.end());
             matcher = pattern.matcher(input);
@@ -31,18 +33,18 @@ public class Application {
 
         String[] numbers = input.split(finalDelimiter);
 
-        int result = 0;
+        double result = 0;
 
         for (String number : numbers) {
-            if (number == "") {
+            if (number.isEmpty()) {
                 continue;
             }
             try {
-                int integer = Integer.parseInt(number);
-                if (integer <= 0) {
+                double doubleValue = Double.parseDouble(number);
+                if (doubleValue <= 0) {
                     throw new IllegalArgumentException();
                 }
-                result += integer;
+                result += doubleValue;
             } catch (NumberFormatException e) {
                 throw new IllegalArgumentException(e);
             }
