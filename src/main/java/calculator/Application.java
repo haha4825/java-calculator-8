@@ -1,5 +1,6 @@
 package calculator;
 
+import camp.nextstep.edu.missionutils.Console;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -9,8 +10,7 @@ import java.util.regex.Pattern;
 public class Application {
     public static void main(String[] args) {
         System.out.println("덧셈할 문자열을 입력해주세요.");
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
+        String input = Console.readLine();
 
         String patternString = "^(//)(.)(\\\\n)";
         Pattern pattern = Pattern.compile(patternString);
